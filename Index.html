@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Mesa de Ayuda Freshservice</title>
+  <script src="https://res.cdn.office.net/teams-js/2.19.0/js/MicrosoftTeams.min.js" integrity="sha384-jKAyaR0FpVOEAvOj5p10tXcAFGE+xLcyrJOTrtVcq2EUOnSjzOhgQUgQM67lQRoa" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+    button {
+      background-color: #6264A7;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #4f5199;
+    }
+    p {
+      margin-bottom: 20px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <p>Accede a la Mesa de Ayuda Freshservice</p>
+  <button onclick="abrirFreshservice()">Abrir Freshservice</button>
+
+  <script>
+    const url = "https://excomin.freshservice.com/support/home";
+
+    microsoftTeams.app.initialize().then(() => {
+      console.log("Teams SDK inicializado");
+    }).catch((err) => {
+      console.error("Error inicializando SDK de Teams", err);
+    });
+
+    function abrirFreshservice() {
+      if (window.microsoftTeams) {
+        microsoftTeams.app.openLink(url).catch(() => {
+          // si falla, usamos fallback
+          window.open(url, "_blank");
+        });
+      } else {
+        window.open(url, "_blank");
+      }
+    }
+  </script>
+</body>
+</html>
